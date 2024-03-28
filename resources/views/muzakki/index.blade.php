@@ -1,9 +1,15 @@
 @extends('layouts.dashboard.main')
-@extends('layouts.dashboard.sidebar')
-@extends('layouts.dashboard.header')
-@extends('layouts.dashboard.footer')
 
 @section('content')
+    @extends('layouts.dashboard.sidebar')
+    @extends('layouts.dashboard.header')
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    
+@endif
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -32,11 +38,13 @@
                                         <td>{{ $m->jenis_kelamin }}</td>
                                         <td>{{ $m->tanggal_lahir }}</td>
                                         <td>
-                                            <a href="/muzakki/{{$m->id}}/edit">Edit</a>
+                                            <a href="/muzakki/{{$m->id}}/edit" onclick="return confirm('Apakah Anda yakin ingin mengedit data ini?')">Edit</a>
                                             <form action="/muzakki/{{$m->id}}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            <form action="/muzakki/{{$m->id}}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                         </form>
                                             </form>
                                         </td>
                                     </tr>
@@ -48,4 +56,6 @@
             </div>
         </div>
     </div>
+
+    @extends('layouts.dashboard.footer')
 @endsection

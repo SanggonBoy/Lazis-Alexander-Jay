@@ -49,7 +49,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $m->kode_amil}}</td>
                                             <td>{{ $m->nama_amil}}</td>
-                                            <td>{{ $m->no_telp }}</td>
+                                            <td>0{{ $m->no_telp }}</td>
                                             <td>{{ $m->alamat }}</td>
                                             <td>{{ $m->jenis_kelamin }}</td>
                                             <td>

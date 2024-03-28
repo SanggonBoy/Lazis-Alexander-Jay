@@ -44,7 +44,7 @@ class BarangController extends Controller
 
         Barang::create($validate);
 
-        return redirect('/barang/create');
+        return redirect('/barang');
     }
 
     /**

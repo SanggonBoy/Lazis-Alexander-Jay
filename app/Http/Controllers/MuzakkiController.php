@@ -53,7 +53,7 @@ class MuzakkiController extends Controller
 
         // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('muzakki.index')
-            ->with('success', 'Muzakki berhasil ditambahkan.');
+            ->with('success', 'Anggota Muzakki baru berhasil ditambahkan.');
     }
 
     /**

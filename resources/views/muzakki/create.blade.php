@@ -34,7 +34,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama">Kode Muzaki</label>
-                        <input class="form-control form-control-solid" id="" name="kode_muzakki" type="text" placeholder="Nama Muzakki" >
+                        <input class="form-control form-control-solid" id="" name="kode_muzakki" type="text" placeholder="kode Muzakki" >
                     </div>
                     <div class="mb-3">
                         <label for="nama">Nama</label>
@@ -49,8 +49,8 @@
                     <div class="mb-3">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
                         <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
                     

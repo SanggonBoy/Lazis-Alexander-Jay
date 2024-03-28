@@ -11,6 +11,7 @@ use App\Http\Controllers\KategoriBarangController;
 use App\Http\Controllers\CoaController;
 use App\Http\Controllers\AmilController;
 use App\Http\Controllers\MuzakkiController;
+use App\Http\Controllers\MustahikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +52,11 @@ Route::get('/amil/destroy/{id}', [App\Http\Controllers\AmilController::class,'de
 Route::resource('/coa', CoaController::class)->middleware(['auth']);
 Route::get('/coa/destroy/{id}', [App\Http\Controllers\CoaController::class,'destroy'])->middleware(['auth']);
 
+// Route Muzakki
 Route::get('/muzakki', [MuzakkiController::class, 'index'])->middleware('auth');
 Route::resource('/muzakki', MuzakkiController::class)->middleware('auth');
+
+// Route Mustahik
+Route::get('/mustahik', [MustahikController::class, 'index'])->middleware('auth');
+Route::resource('/mustahik', MustahikController::class)->middleware('auth');
+

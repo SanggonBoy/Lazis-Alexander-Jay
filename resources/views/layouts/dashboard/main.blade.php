@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Lazis & Zakat</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('dashboard/images/logos/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('dashboard/css/styles.min.css') }}" />
 </head>
@@ -50,6 +50,7 @@
     <script src="{{ asset('dashboard/js/dashboard.js') }}"></script>
     <script src="{{ asset('calendar/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
 </body>
 
 </html>

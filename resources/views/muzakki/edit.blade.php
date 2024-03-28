@@ -79,13 +79,18 @@
                 <input class="form-control form-control-solid" id="id_muzakki" name="kode_muzakki" type="text" value="{{$muzakki->kode_muzakki}}" readonly></div>
 
                 <div class="mb-3"><label for="id_muzakki">Nama Muzakki</label>
-                <input class="form-control form-control-solid" id="id_muzakki" name="nama_muzakki" type="text" value="{{$muzakki->nama_muzakki}}" readonly></div>
+                <input class="form-control form-control-solid" id="id_muzakki" name="nama_muzakki" type="text" value="{{$muzakki->nama_muzakki}}" ></div>
 
                 <div class="mb-3"><label for="no_telp">Nomor Telepon</label>
                 <input class="form-control form-control-solid" id="no_telp" name="no_telp" type="text" value="{{$muzakki->no_telp}}"></div>
 
-                <div class="mb-3"><label for="jenis_kelamin">Jenis Kelamin</label>
-                <input class="form-control form-control-solid" id="jenis_kelamin" name="jenis_kelamin" type="text" value="{{$muzakki->jenis_kelamin}}"></div>
+                <div class="mb-3">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
 
                 <div class="mb-0"><label for="tanggal_lahir">Tanggal Lahir</label>
                 <input class="form-control form-control-solid" id="tanggal_lahir" name="tanggal_lahir" type="date" value="{{$muzakki->tanggal_lahir}}"></div>
@@ -96,7 +101,7 @@
                     <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Ubah">
 
                     <!-- untuk tombol batal simpan -->
-                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/perusahaan') }}" role="button">Batal</a>
+                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/muzakki') }}" role="button">Batal</a>
                     
                 </form>
                 <!-- Akhir Dari Input Form -->
