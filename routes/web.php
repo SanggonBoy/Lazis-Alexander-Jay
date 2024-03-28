@@ -1,0 +1,55 @@
+<?php
+
+use GuzzleHttp\Middleware;
+use App\Http\Controllers\Guest;
+use App\Http\Controllers\Dashboard;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\KategoriBarangController;
+use App\Http\Controllers\CoaController;
+use App\Http\Controllers\AmilController;
+use App\Http\Controllers\MuzakkiController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', [Guest::class, 'index']);
+
+// Route Dashboard
+Route::get('/godFrey', [Dashboard::class, 'index'])->middleware('auth');
+
+// Route Login
+Route::get('/join', [LoginController::class, 'index'])->middleware('guest')->name('login');
+// Route::get('/login', [LoginController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'destroy']);
+
+// Route Barang
+Route::get('/barang', [BarangController::class, 'index'])->middleware('auth');
+Route::resource('/barang', BarangController::class)->middleware('auth');
+
+// Route Kategori
+Route::get('/kategori', [KategoriBarangController::class, 'index'])->middleware('auth');
+Route::resource('/kategori', KategoriBarangController::class)->middleware('auth');
+
+// Route amil 
+Route::resource('/amil', AmilController::class)->middleware(['auth']);
+Route::get('/amil/destroy/{id}', [App\Http\Controllers\AmilController::class,'destroy'])->middleware(['auth']);
+
+// Route Coa
+Route::resource('/coa', CoaController::class)->middleware(['auth']);
+Route::get('/coa/destroy/{id}', [App\Http\Controllers\CoaController::class,'destroy'])->middleware(['auth']);
+
+Route::get('/muzakki', [MuzakkiController::class, 'index'])->middleware('auth');
+Route::resource('/muzakki', MuzakkiController::class)->middleware('auth');
