@@ -6,7 +6,7 @@
 @section('content')
     <h1>Ubah Data</h1>
     <form action="/kategori/{{$kategori->id}}" method="post" class="mb-3">
-        @method('put')
+        @method('patch')
         @csrf
         <label for="exampleFormControlInput1" class="form-label">Kode Kategori</label>
         <div class="input-group mb-3">

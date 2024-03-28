@@ -1,7 +1,4 @@
-@extends('layouts.dashboard.main')
-@extends('layouts.dashboard.sidebar')
-@extends('layouts.dashboard.header')
-@extends('layouts.dashboard.footer')
+@extends('layouts/dashboard/main')
 
 @section('content')
 <h2 style="text-align: center;">Tabel Barang</h2>
@@ -96,5 +93,4 @@
         </div>
     </div>
 </div>
-
 @endsection

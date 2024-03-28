@@ -4,14 +4,15 @@ use GuzzleHttp\Middleware;
 use App\Http\Controllers\Guest;
 use App\Http\Controllers\Dashboard;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CoaController;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\AmilController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\KategoriBarangController;
-use App\Http\Controllers\CoaController;
-use App\Http\Controllers\AmilController;
 use App\Http\Controllers\MuzakkiController;
 use App\Http\Controllers\MustahikController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\KategoriBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,15 +31,20 @@ Route::get('/', [Guest::class, 'index']);
 Route::get('/godFrey', [Dashboard::class, 'index'])->middleware('auth');
 
 // Route Login
-Route::get('/join', [LoginController::class, 'index'])->middleware('guest')->name('login');
+Route::get('/joinUs', [LoginController::class, 'index'])->middleware('guest')->name('login');
 // Route::get('/login', [LoginController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'destroy']);
 
+//GeneratePdf
+Route::get('/generatePdf', [PdfController::class, 'generatePdf']);
+
 // Route Barang
 Route::get('/barang', [BarangController::class, 'index'])->middleware('auth');
 Route::resource('/barang', BarangController::class)->middleware('auth');
+Route::get('/barang/destroy/{id}', [App\Http\Controllers\BarangController::class,'destroy'])->middleware(['auth']);
+
 
 // Route Kategori
 Route::get('/kategori', [KategoriBarangController::class, 'index'])->middleware('auth');

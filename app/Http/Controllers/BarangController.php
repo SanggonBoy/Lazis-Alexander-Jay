@@ -28,7 +28,7 @@ class BarangController extends Controller
     public function create()
     {
         return view('barang/tambah', [
-            'kategori' => Kategori_barang::all()
+            'kategori' => Kategori_barang::all(),
         ]);
     }
 
@@ -39,7 +39,7 @@ class BarangController extends Controller
     {
         $validate = $request->validate([
             'nama_barang' => 'required',
-            'kode_kategori' => 'required'
+            'kode_kategori' => 'required',
         ]);
 
         Barang::create($validate);
@@ -62,7 +62,7 @@ class BarangController extends Controller
     {
         return view('barang/edit', [
             'barang' => $barang,
-            'kategori' => Kategori_barang::all()
+            'kategori' => Kategori_barang::all(),
         ]);
     }
 
@@ -73,11 +73,10 @@ class BarangController extends Controller
     {
         $validated = $request->validate([
             'nama_barang' => 'required',
-            'kode_kategori' => 'required'
+            'kode_kategori' => 'required',
         ]);
 
-        Barang::where('id', $barang->id)
-            ->update($validated);
+        Barang::where('id', $barang->id)->update($validated);
 
         return redirect('/barang');
     }
@@ -85,9 +84,10 @@ class BarangController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Barang $barang)
+    public function destroy($id)
     {
-        Barang::destroy($barang->id);
+        $barang = Barang::findOrFail($id);
+        $barang->delete();
         return redirect('/barang');
     }
 }

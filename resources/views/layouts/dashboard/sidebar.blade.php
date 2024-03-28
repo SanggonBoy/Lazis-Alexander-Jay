@@ -4,8 +4,9 @@
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="/godFrey" class="text-nowrap logo-img">
-                <h1 class="display-4 text-dark">Lazis</h1>
-                {{-- <img src="{{ asset('dashboard/images/logos/dark-logo.svg') }}" width="180" alt="" /> --}}
+                <img src="{{ asset('https://webicdn.com/sdirmember/26/25579/logotoko/xj97q.jpg') }}" width="180" alt="" />
+
+                <p class="display-8 text-dark">Lazis & Zakat Masjid Syamsul 'Ulum</p>
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
