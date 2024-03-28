@@ -33,7 +33,7 @@
                 <input class="form-control form-control-solid" id="id_amil" name="nama_amil" type="text" value="{{$amil->nama_amil}}" readonly></div>
 
                 <div class="mb-3"><label for="no_telp">Nomor Telepon</label>
-                <input class="form-control form-control-solid" id="no_telp" name="no_telp" type="text" value="{{$amil->no_telp}}"></div>
+                <input class="form-control form-control-solid" id="no_telp" name="no_telp" type="number" value="{{$amil->no_telp}}"></div>
 
                 <div class="mb-0"><label for="alamat">Alamat</label>
                 <input class="form-control form-control-solid" id="alamat" name="alamat" type="textarea" value="{{$amil->alamat}}"></div>

@@ -36,7 +36,7 @@
                     
                     <div class="mb-3">
                         <label for="no_telp">Nomor Telepon</label>
-                        <input class="form-control form-control-solid" id="no_telp" name="no_telp" type="text" placeholder="Nomor Telepon" >
+                        <input class="form-control form-control-solid" id="no_telp" name="no_telp" type="number" placeholder="Nomor Telepon" >
                     </div>
                     
                     <div class="mb-3">

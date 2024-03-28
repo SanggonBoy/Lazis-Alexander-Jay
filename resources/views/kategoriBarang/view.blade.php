@@ -26,7 +26,7 @@
                     <td style="border: 1px solid #dddddd; padding: 8px;">{{ $count++ }}</td>
                     <td style="border: 1px solid #dddddd; padding: 8px;">KGR-{{ $k->kode_kategori }}</td>
                     <td style="border: 1px solid #dddddd; padding: 8px;">{{ $k->kategori }}</td>
-                    {{-- <td style="border: 1px solid #dddddd; padding: 8px;"><a class="badge text-bg-warning border-0"
+                    <td style="border: 1px solid #dddddd; padding: 8px;"><a class="badge text-bg-warning border-0"
                             href="/kategori/{{ $k->id }}/edit">
                             Edit
                         </a></td>
@@ -36,7 +36,7 @@
                             @csrf
                             <button class="badge text-bg-danger border-0">Hapus</button>
                         </form>
-                    </td> --}}
+                    </td>
                 </tr>
             @endforeach
         </tbody>

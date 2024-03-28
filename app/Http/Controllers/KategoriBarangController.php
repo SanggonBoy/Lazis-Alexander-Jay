@@ -55,29 +55,25 @@ class KategoriBarangController extends Controller
      */
     public function edit(Kategori_barang $kategori_barang)
     {
-        // return view('/kategoriBarang/edit', [
-        //     'kategori' => $kategori_barang
-        // ]);
+        return view('/kategoriBarang/edit', [
+            'kategori' => $kategori_barang
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKategori_barangRequest $request, Kategori_barang $kategori_barang)
+    public function update(Request $request, Kategori_barang $kategori_barang)
     {
-        // $rules = $request->validate([
-        //     'kode_kategori' => 'required|unique:kategori_barang',
-        //     'kategori' => 'required|unique:kategori_barang'
-        // ]);
+        $rules = $request->validate([
+            'kode_kategori' => 'required|unique:kategori_barang',
+            'kategori' => 'required|unique:kategori_barang'
+        ]);
 
-        // $kgr = 'KGR-'.$rules['kode_kategori'];
+        Kategori_barang::where('id', $kategori_barang->id)
+        ->update($rules);
 
-        // $validated = [
-        //     'kode_kategori' => $kgr,
-        //     'kategori'=> $rules['kategori']
-        // ];
-
-        // return dd($validated);
+        return view('/kategoriBarang/view');
     }
 
     /**
@@ -85,7 +81,7 @@ class KategoriBarangController extends Controller
      */
     public function destroy(Kategori_barang $kategori_barang)
     {
-        // Kategori_barang::destroy($kategori_barang->id);
-        // return redirect('/kategori');
+        Kategori_barang::destroy('id',$kategori_barang->id);
+        return redirect('/kategori');
     }
 }

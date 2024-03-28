@@ -34,7 +34,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $m->nama_muzakki}}</td>
-                                        <td>{{ $m->no_telp }}</td>
+                                        <td>0{{ $m->no_telp }}</td>
                                         <td>{{ $m->jenis_kelamin }}</td>
                                         <td>{{ $m->tanggal_lahir }}</td>
                                         <td>

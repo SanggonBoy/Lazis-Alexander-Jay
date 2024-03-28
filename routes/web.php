@@ -39,6 +39,8 @@ Route::post('/logout', [LoginController::class, 'destroy']);
 // Route Barang
 Route::get('/barang', [BarangController::class, 'index'])->middleware('auth');
 Route::resource('/barang', BarangController::class)->middleware('auth');
+Route::get('/barang/destroy/{id}', [App\Http\Controllers\BarangController::class,'destroy'])->middleware(['auth']);
+
 
 // Route Kategori
 Route::get('/kategori', [KategoriBarangController::class, 'index'])->middleware('auth');
