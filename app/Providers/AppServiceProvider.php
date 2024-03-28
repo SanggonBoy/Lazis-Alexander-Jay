@@ -25,5 +25,9 @@ class AppServiceProvider extends ServiceProvider
         {
             return $user->status === 'admin';
         });
+        Gate::define('karyawan', function(User $user)
+        {
+            return $user->status === 'karyawan';
+        });
     }
 }

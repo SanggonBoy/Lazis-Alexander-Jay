@@ -15,13 +15,13 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">List of Muzakki</div>
-                    <a href="muzakki/create">Tambah Data</a>
+                    @can('admin')<a href="muzakki/create">Tambah Data</a>@endcan
 
                     <div class="card-body">
                         <table class="table">   
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Nama</th>
                                     <th>Nomor Telepon</th>
                                     <th>Jenis Kelamin</th>
@@ -38,7 +38,7 @@
                                         <td>{{ $m->jenis_kelamin }}</td>
                                         <td>{{ $m->tanggal_lahir }}</td>
                                         <td>
-                                            <a href="/muzakki/{{$m->id}}/edit" onclick="return confirm('Apakah Anda yakin ingin mengedit data ini?')">Edit</a>
+                                            <a href="/muzakki/{{$m->id}}/edit" onclick="return confirm('Apakah Anda yakin ingin mengedit data ini?')">Ubah</a>
                                             <form action="/muzakki/{{$m->id}}" method="POST" style="display: inline;">
                                             <form action="/muzakki/{{$m->id}}" method="POST" style="display: inline;">
                                         @csrf

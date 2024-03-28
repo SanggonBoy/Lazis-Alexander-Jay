@@ -82,7 +82,7 @@
                 <input class="form-control form-control-solid" id="id_muzakki" name="nama_muzakki" type="text" value="{{$muzakki->nama_muzakki}}" ></div>
 
                 <div class="mb-3"><label for="no_telp">Nomor Telepon</label>
-                <input class="form-control form-control-solid" id="no_telp" name="no_telp" type="text" value="{{$muzakki->no_telp}}"></div>
+                <input class="form-control form-control-solid" id="no_telp" name="no_telp" type="number" value="{{$muzakki->no_telp}}"></div>
 
                 <div class="mb-3">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
