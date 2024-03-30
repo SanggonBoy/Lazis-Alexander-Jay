@@ -14,11 +14,12 @@
                     </a>
                 </li>
             </ul>
-            
+
             <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                    {{-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank"
-                        class="btn btn-primary">Download Free</a> --}}
+                    <a href="#!" data-bs-toggle="modal" data-bs-target="#laporan" class="btn btn-primary me-5">
+                        Unduh Laporan
+                    </a>
                     <p class="mb-0 fs-3">{{ auth()->user()->name }}</p>
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
@@ -58,4 +59,36 @@
             </div>
         </nav>
     </header>
+    <!-- Modal -->
+    <div class="modal fade" id="laporan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <a href="/barang-pdf">
+                        <label class="form-check-label btn btn-outline-primary me-3" for="my-checkbox">
+                            Laporan Barang
+                        </label>
+                    </a>
+                    <a href="/amil-pdf">
+                        <label class="form-check-label btn btn-outline-primary me-3" for="my-checkbox">
+                            Laporan Amil
+                        </label>
+                    </a>
+                    <a href="/kategori-pdf">
+                        <label class="form-check-label btn btn-outline-primary me-3" for="my-checkbox">
+                            Laporan Kategori
+                        </label>
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Tututp</button>
+                    {{-- <button class="btn btn-primary">Unduh</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

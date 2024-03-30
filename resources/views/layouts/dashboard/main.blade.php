@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lazis & Zakat</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('https://webicdn.com/sdirmember/26/25579/logotoko/xj97q.jpg') }}" />
+    <link rel="shortcut icon" type="image/png"
+        href="{{ asset('https://webicdn.com/sdirmember/26/25579/logotoko/xj97q.jpg') }}" />
     <link rel="stylesheet" href="{{ asset('dashboard/css/styles.min.css') }}" />
 </head>
 
@@ -40,7 +41,7 @@
             result.textContent = inputText.value;
         });
     </script>
-
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <script src="{{ asset('dashboard/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('dashboard/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('dashboard/js/sidebarmenu.js') }}"></script>
@@ -50,7 +51,7 @@
     <script src="{{ asset('dashboard/js/dashboard.js') }}"></script>
     <script src="{{ asset('calendar/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    
+
 </body>
 
 </html>

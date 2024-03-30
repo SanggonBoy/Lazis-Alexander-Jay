@@ -12,6 +12,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\MuzakkiController;
 use App\Http\Controllers\MustahikController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KategoriBarangController;
 
 /*
@@ -38,12 +39,14 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'destroy']);
 
 //GeneratePdf
-Route::get('/generatePdf', [PdfController::class, 'generatePdf']);
+Route::get('/barang-pdf', [PdfController::class, 'barangPdf'])->middleware('status');
+Route::get('/amil-pdf', [PdfController::class, 'amilPdf'])->middleware('status');
+Route::get('/kategori-pdf', [PdfController::class, 'kategoriPdf'])->middleware('status');
 
 // Route Barang
 Route::get('/barang', [BarangController::class, 'index'])->middleware('auth');
 Route::resource('/barang', BarangController::class)->middleware('auth');
-Route::get('/barang/destroy/{id}', [App\Http\Controllers\BarangController::class,'destroy'])->middleware(['auth']);
+Route::get('/barang/destroy/{id}', [App\Http\Controllers\BarangController::class, 'destroy'])->middleware(['auth']);
 
 
 // Route Kategori
@@ -52,11 +55,11 @@ Route::resource('/kategori', KategoriBarangController::class)->middleware('auth'
 
 // Route amil 
 Route::resource('/amil', AmilController::class)->middleware(['auth']);
-Route::get('/amil/destroy/{id}', [App\Http\Controllers\AmilController::class,'destroy'])->middleware(['auth']);
+Route::get('/amil/destroy/{id}', [App\Http\Controllers\AmilController::class, 'destroy'])->middleware(['auth']);
 
 // Route Coa
 Route::resource('/coa', CoaController::class)->middleware(['auth']);
-Route::get('/coa/destroy/{id}', [App\Http\Controllers\CoaController::class,'destroy'])->middleware(['auth']);
+Route::get('/coa/destroy/{id}', [App\Http\Controllers\CoaController::class, 'destroy'])->middleware(['auth']);
 
 // Route Muzakki
 Route::get('/muzakki', [MuzakkiController::class, 'index'])->middleware('auth');
@@ -66,3 +69,6 @@ Route::resource('/muzakki', MuzakkiController::class)->middleware('auth');
 Route::get('/mustahik', [MustahikController::class, 'index'])->middleware('auth');
 Route::resource('/mustahik', MustahikController::class)->middleware('auth');
 
+// Route Transaksi
+Route::get('/transaksi', [TransaksiController::class, 'index'])->middleware('auth');
+Route::resource('/transaksi', TransaksiController::class)->middleware('auth');
