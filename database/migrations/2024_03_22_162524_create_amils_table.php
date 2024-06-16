@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('amil', function (Blueprint $table) {
             $table->id();
             $table->string('kode_amil');
+            $table->string('email');
             $table->string('nama_amil');
-            $table->integer('no_telp');
+            $table->string('password');
+            $table->string('no_telp', 13);
             $table->string('alamat');
-            $table->string('jenis_kelamin');
+            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
+            $table->string('status');
+            $table->string('qr_token');
             $table->timestamps();
         });
     }

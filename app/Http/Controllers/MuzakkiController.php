@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Muzakki; // Import model Muzakki
+use App\Models\Muzakki; 
+use App\Models\User; 
+use Illuminate\Support\Facades\Hash;
+use PharIo\Manifest\Email;// Import model Muzakki
 
 class MuzakkiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // Tampilkan view dengan data muzakki
@@ -19,24 +17,12 @@ class MuzakkiController extends Controller
             'muzakki' => Muzakki::all()
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         // Tampilkan view untuk membuat muzakki baru
         return view('muzakki.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // Validasi data yang diterima dari request
@@ -55,13 +41,6 @@ class MuzakkiController extends Controller
         return redirect()->route('muzakki.index')
             ->with('success', 'Anggota Muzakki baru berhasil ditambahkan.');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         // // Ambil data muzakki berdasarkan ID
@@ -70,13 +49,6 @@ class MuzakkiController extends Controller
         // // Tampilkan view untuk menampilkan detail muzakki
         // return view('muzakki.show', compact('muzakki'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Muzakki $muzakki)
     {
         return view('muzakki/edit', [
@@ -84,46 +56,45 @@ class MuzakkiController extends Controller
         ]);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Muzakki $muzakki)
     {
-        $isi = $request->validate([
-            'kode_muzakki' => 'required',
-            'nama_muzakki' => 'required',
-            'no_telp' => 'required',
+        $user = User::where('email', $muzakki->email)->first();
+
+        $rules = [
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'name' => 'required',
+            'password' => 'required|min:8',
+            'no_telp' => 'required|min:11|max:13',
             'jenis_kelamin' => 'required',
-            'tanggal_lahir' => 'required',
+        ];
+
+        $validated = $request->validate($rules);
+
+        $validated['status'] = 'muzakki';
+        $validated['qr_token'] = $request->qr_token;
+
+        Muzakki::where('id', $muzakki->id)->update($validated);
+
+        
+        $user->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'status' => $validated['status'],
+            'qr_token' => $request->qr_token,
         ]);
 
-        Muzakki::where('id', $muzakki->id)
-        ->update($isi);
-
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('muzakki.index')
             ->with('success', 'Data Muzakki berhasil diperbarui.');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        // Hapus data muzakki berdasarkan ID
         $muzakki = Muzakki::findOrFail($id);
         $muzakki->delete();
 
-        // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('muzakki.index')
-            ->with('success', 'Data Muzakki berhasil dihapus.');
+        $user = User::where('email', $muzakki->email)->first();
+        User::where('email', $user->email)->delete();
+
+        return redirect('/muzakki')->with('success', 'Data Muzakki berhasil dihapus.');
     }
 }

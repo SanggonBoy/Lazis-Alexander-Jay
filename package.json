@@ -6,7 +6,12 @@
     },
     "devDependencies": {
         "axios": "^1.1.2",
+        "html5-qrcode": "^2.3.8",
         "laravel-vite-plugin": "^0.7.2",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "bootstrap-icons": "^1.11.3",
+        "intro.js": "^7.2.0"
     }
 }

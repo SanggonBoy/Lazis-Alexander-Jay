@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Kelompok 3',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin123'),
-            'status' => 'admin'
+            'status' => 'admin',
+            'qr_token' => Str::random(60)
         ]);
     }
 }

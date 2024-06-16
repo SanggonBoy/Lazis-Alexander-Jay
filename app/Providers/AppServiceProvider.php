@@ -25,9 +25,9 @@ class AppServiceProvider extends ServiceProvider
         {
             return $user->status === 'admin';
         });
-        Gate::define('karyawan', function(User $user)
+        Gate::define('amil', function(User $user)
         {
-            return $user->status === 'karyawan';
+            return $user->status === 'amil' || $user->status === 'admin';
         });
     }
 }

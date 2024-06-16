@@ -61,26 +61,26 @@ class CoaController extends Controller
         ]);
     
         // Tambahkan prefix pada kode akun sesuai dengan header_akun
-        switch ($request->header_akun) {
-            case '1':
-                $validated['kode_akun'] = '1' . $validated['kode_akun'];
-                break;
-            case '2':
-                $validated['kode_akun'] = '2' . $validated['kode_akun'];
-                break;
-            case '3':
-                $validated['kode_akun'] = '3' . $validated['kode_akun'];
-                break;
-            case '4':
-                $validated['kode_akun'] = '4' . $validated['kode_akun'];
-                break;
-            case '5':
-                $validated['kode_akun'] = '5' . $validated['kode_akun'];
-                break;
-            default:
-                // Jika tidak ada header yang dipilih, tidak melakukan perubahan pada kode akun
-                break;
-        }
+        // switch ($request->header_akun) {
+        //     case '1':
+        //         $validated['kode_akun'] = '1' . $validated['kode_akun'];
+        //         break;
+        //     case '2':
+        //         $validated['kode_akun'] = '2' . $validated['kode_akun'];
+        //         break;
+        //     case '3':
+        //         $validated['kode_akun'] = '3' . $validated['kode_akun'];
+        //         break;
+        //     case '4':
+        //         $validated['kode_akun'] = '4' . $validated['kode_akun'];
+        //         break;
+        //     case '5':
+        //         $validated['kode_akun'] = '5' . $validated['kode_akun'];
+        //         break;
+        //     default:
+        //         // Jika tidak ada header yang dipilih, tidak melakukan perubahan pada kode akun
+        //         break;
+        // }
     
         // masukkan ke db
         Coa::create($validated);
@@ -120,32 +120,32 @@ class CoaController extends Controller
     {
         // Validation rules with modified kode_akun
         $validated = $request->validate([
-            'kode_akun' => 'required|unique:coa|max:3',
+            'kode_akun' => 'required|max:3',
             'nama_akun' => 'required|max:255',
             'header_akun' => 'required',
         ]);
     
         // Tambahkan prefix pada kode akun sesuai dengan header_akun
-        switch ($request->header_akun) {
-            case '1':
-                $validated['kode_akun'] = '1' . $validated['kode_akun'];
-                break;
-            case '2':
-                $validated['kode_akun'] = '2' . $validated['kode_akun'];
-                break;
-            case '3':
-                $validated['kode_akun'] = '3' . $validated['kode_akun'];
-                break;
-            case '4':
-                $validated['kode_akun'] = '4' . $validated['kode_akun'];
-                break;
-            case '5':
-                $validated['kode_akun'] = '5' . $validated['kode_akun'];
-                break;
-            default:
-                // Jika tidak ada header yang dipilih, tidak melakukan perubahan pada kode akun
-                break;
-        }
+        // switch ($request->header_akun) {
+        //     case '1':
+        //         $validated['kode_akun'] = '1' . $validated['kode_akun'];
+        //         break;
+        //     case '2':
+        //         $validated['kode_akun'] = '2' . $validated['kode_akun'];
+        //         break;
+        //     case '3':
+        //         $validated['kode_akun'] = '3' . $validated['kode_akun'];
+        //         break;
+        //     case '4':
+        //         $validated['kode_akun'] = '4' . $validated['kode_akun'];
+        //         break;
+        //     case '5':
+        //         $validated['kode_akun'] = '5' . $validated['kode_akun'];
+        //         break;
+        //     default:
+        //         // Jika tidak ada header yang dipilih, tidak melakukan perubahan pada kode akun
+        //         break;
+        // }
     
         $coa->update($validated);
     

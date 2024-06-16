@@ -4,97 +4,137 @@
 @extends('layouts.dashboard.footer')
 
 @section('content')
-<h2 style="text-align: center;">Tabel Barang</h2>
-<hr>
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="card-title fw-semibold mb-4">Barang</h5>
+                            <div class="card">
 
-@can('admin') <a class="badge text-bg-primary mb-5 mt-2 p-2" href="/barang/create">Tambah Barang</a> @endcan
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Master Data Barang</h6>
 
-<table style="border-collapse: collapse; width: 100%;">
-    <thead>
-        <tr>
-            <th style="border: 1px solid #dddddd; background-color: #f2f2f2; padding: 8px;">No</th>
-            <th style="border: 1px solid #dddddd; background-color: #f2f2f2; padding: 8px;">Kode Barang</th>
-            <th style="border: 1px solid #dddddd; background-color: #f2f2f2; padding: 8px;">Kategori Barang</th>
-            <th style="border: 1px solid #dddddd; background-color: #f2f2f2; padding: 8px;">Nama Barang</th>
-            @can('admin')<th style='border: 1px solid #dddddd; background-color: #f2f2f2; padding: 8px;' colspan="2">Opsi</th>@endcan
-        </tr>
-    </thead>
-    <tbody>
-        <?php $count = 1;
-        ?>
-        @foreach ($barang as $b)
-        <tr>
-            <td style="border: 1px solid #dddddd; padding: 8px;">{{ $count++ }}</td>
-            <td style="border: 1px solid #dddddd; padding: 8px;">{{ $b->kategori->kode_kategori }}</td>
-            <td style="border: 1px solid #dddddd; padding: 8px;">{{ $b->kategori->kategori }}</td>
-            <td style="border: 1px solid #dddddd; padding: 8px;">{{ $b->nama_barang }}</td>
-            @can('admin')<td style="border: 1px solid #dddddd; padding: 8px;"><a class="badge text-bg-warning border-0" href="/barang/{{ $b->id }}/edit">
-                    Edit
-                </a></td>
-            <td style="border: 1px solid #dddddd; padding: 8px;">
-                <a href="#" onclick="deleteConfirm(this); return false;" data-id="{{ $b->id }}" class="btn btn-danger btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                        <i class="ti ti-minus"></i>
-                    </span>
-                    <span class="text">Hapus</span>
-                    <!-- <form action="/barang/{{ $b->id }}" method="post">
-                            @method('delete')
-                            @csrf
-                            <button class="badge text-bg-danger border-0">Hapus</button>
-                        </form> -->
-            </td>@endcan
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-<script>
-    function deleteConfirm(e) {
-        var tomboldelete = document.getElementById('btn-delete')
-        id = e.getAttribute('data-id');
+                                    <!-- Tombol Tambah Data -->
+                                    @can('admin')
+                                        <a href="{{ url('/barang/create') }}" class="btn btn-primary btn-icon-split btn-sm">
+                                            <span class="icon text-white-50">
+                                                <i class="ti ti-plus"></i>
+                                            </span>
+                                            <span class="text">Tambah Data</span>
+                                        </a>
+                                    @endcan
+                                    <!-- Akghir Tombol Tambah Data -->
 
-        // const str = 'Hello' + id + 'World';
-        var url3 = "{{url('barang/destroy/')}}";
-        var url4 = url3.concat("/", id);
-        // console.log(url4);
+                                </div>
 
-        // console.log(id);
-        // var url = "{{url('barang/destroy/"+id+"')}}";
 
-        // url = JSON.parse(rul.replace(/"/g,'"'));
-        tomboldelete.setAttribute("href", url4); //akan meload kontroller delete
+                                <div class="card-body">
+                                    <!-- Awal Dari Tabel -->
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead class="thead-white">
+                                                <tr>
+                                                    <th>No</th>
+                                                    {{-- <th>Kode Barang</th> --}}
+                                                    <th>Nama Barang</th>
+                                                    <th>Kategori Barang</th>
+                                                    @can('admin')
+                                                        <th colspan="2">Action</th>
+                                                    @endcan
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($barang as $c)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        {{-- <td>{{ $c->kategori->kategori }}</td> --}}
+                                                        <td>{{ $c->nama_barang }}</td>
+                                                        <td>{{ $c->kode_kategori }}</td>
+                                                        @can('admin')
+                                                            <td>
+                                                                <a href="/barang/{{ $c->id }}/edit"
+                                                                    class="btn btn-success btn-icon-split btn-sm">
+                                                                    <span class="icon text-white-50">
+                                                                        <i class="ti ti-check"></i>
+                                                                    </span>
+                                                                    <span class="text">Ubah</span>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" onclick="deleteConfirm(this); return false;"
+                                                                    nama_akun="{{ $c->nama_barang }}"
+                                                                    data-id="{{ $c->id }}"
+                                                                    class="btn btn-danger btn-icon-split btn-sm">
+                                                                    <span class="icon text-white-50">
+                                                                        <i class="ti ti-minus"></i>
+                                                                    </span>
+                                                                    <span class="text">Hapus</span>
+                                                                    </form>
+                                                            </td>
+                                                        @endcan
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        var pesan = "Data dengan ID <b>"
-        var pesan2 = " </b>akan dihapus"
-        var res = id;
-        document.getElementById("xid").innerHTML = pesan.concat(res, pesan2);
+                    <script>
+                        function deleteConfirm(e) {
+                            var tomboldelete = document.getElementById('btn-delete')
+                            id = e.getAttribute('data-id');
+                            nama_akun = e.getAttribute('nama_akun');
 
-        var myModal = new bootstrap.Modal(document.getElementById('deleteModal'), {
-            keyboard: false
-        });
+                            // const str = 'Hello' + id + 'World';
+                            var url3 = "{{ url('barang/destroy/') }}";
+                            var url4 = url3.concat("/", id);
+                            // console.log(url4);
 
-        myModal.show();
+                            // console.log(id);
+                            // var url = "{{ url('coa/destroy/"+id+"') }}";
 
-    }
-</script>
+                            // url = JSON.parse(rul.replace(/"/g,'"'));
+                            tomboldelete.setAttribute("href", url4); //akan meload kontroller delete
 
-<!-- Logout Delete Confirmation-->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin?</h5>
-                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                    x
-                </button>
-            </div>
-            <div class="modal-body" id="xid"></div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-                <a id="btn-delete" class="btn btn-danger" href="#">Hapus</a>
+                            var pesan = "Data dengan Nama Barang <b>"
+                            var pesan2 = " </b>akan dihapus"
+                            var res = nama_akun;
+                            document.getElementById("xid").innerHTML = pesan.concat(res, pesan2);
 
-            </div>
-        </div>
-    </div>
-</div>
+                            var myModal = new bootstrap.Modal(document.getElementById('deleteModal'), {
+                                keyboard: false
+                            });
 
-@endsection
+                            myModal.show();
+
+                        }
+                    </script>
+
+                    <!-- Logout Delete Confirmation-->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin?</h5>
+                                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                                        x
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="xid"></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        data-bs-dismiss="modal">Cancel</button>
+                                    <a id="btn-delete" class="btn btn-outline-danger" href="#">Hapus</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endsection

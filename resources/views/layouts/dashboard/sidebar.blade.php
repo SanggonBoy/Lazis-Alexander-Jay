@@ -1,5 +1,5 @@
 @section('sidebar')
-    <aside class="left-sidebar">
+    <aside class="left-sidebar" style="height: 100%; overflow-y: auto;">
         <!-- Sidebar scroll-->
         <div>
             <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -21,118 +21,176 @@
                         <span class="hide-menu">Home</span>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/godFrey" aria-expanded="false">
+                        <a id="dashboard" class="sidebar-link {{ Request::is('godFrey') ? 'active' : '' }}" href="/godFrey" aria-expanded="false">
                             <span>
                                 <i class="ti ti-layout-dashboard"></i>
                             </span>
                             <span class="hide-menu">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-small-cap">
-                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                        <span class="hide-menu">MASTER DATA</span>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/muzakki" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-user"></i>
+                    @can('amil')
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">MASTER DATA</span>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a id="transaksi" class="sidebar-link {{ Request::is('checking-transaction', 'filter-transactions', 'search-duplicate-transactions') ? 'active' : '' }}" href="/checking-transaction" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-money"></i>
+                                </span>
+                                <span class="hide-menu">Transaksi</span>
+                            </a>
+                        </li>
+                        
+                        {{-- <li class="sidebar-item">
+                            <a class="sidebar-link {{ Request::is('pengaduan-list') ? 'active' : '' }}" href="/pengaduan-list" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </span>
+                                <span class="hide-menu">Pengaduan</span>
+                            </a>
+                        </li> --}}
+
+                        @can('admin')
+                        <li class="sidebar-item">
+                            <a id="cetakKehadiran" class="sidebar-link {{ Request::is('kehadiran*', 'editAbsen') ? 'active' : '' }}" href="/kehadiran" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </span>
+                                <span class="hide-menu">Cetak Kehadiran</span>
+                            </a>
+                        </li>
+                        @endcan
+
+                        <li class="sidebar-item">
+                            <a id="kehadiran" class="sidebar-link {{ Request::is('AttendanceQrAbsen') ? 'active' : '' }}" href="/AttendanceQrAbsen" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </span>
+                                <span class="hide-menu">Kehadiran</span>
+                            </a>
+                        </li>
+
+                        {{-- <li class="sidebar-item">
+                            <a class="sidebar-link" href="/barang" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-package"></i>
+                                </span>
+                                <span class="hide-menu">Barang</span>
+                            </a>
+                        </li> --}}
+
+                        <li class="sidebar-item">
+                            <a id="muzakki" class="sidebar-link {{ Request::is('muzakki*', 'muzakkiUser') ? 'active' : '' }}" href="{{auth()->user()->status == 'admin' ? '/muzakki' : '/muzakkiUser'}}" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <span class="hide-menu">Muzakki</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a id="mustahik" class="sidebar-link {{ Request::is('mustahik', 'mustahik/create') ? 'active' : '' }}" href="/mustahik" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <span class="hide-menu">Mustahik</span>
+                            </a>
+                        </li>
+
+                        @can('admin')
+                        <li class="sidebar-item">
+                            <a id="amil" class="sidebar-link {{ Request::is('amil*') ? 'active' : '' }}" href="/amil" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <span class="hide-menu">Amil</span>
+                            </a>
+                        </li>
+                        @endcan
+
+                        {{-- <li class="sidebar-item">
+                            <a class="sidebar-link" href="/coa" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-server"></i>
+                                </span>
+                                <span class="hide-menu">Coa</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/kategori" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-clipboard"></i>
+                                </span>
+                                <span class="hide-menu">Kategori</span>
+                            </a>
+                        </li> --}}
+
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Transaksi
                             </span>
-                            <span class="hide-menu">Muzakki</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/mustahik" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-star"></i>
-                            </span>
-                            <span class="hide-menu">Mustahik</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/amil" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-id-badge"></i>
-                            </span>
-                            <span class="hide-menu">Amil</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/coa" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-server"></i>
-                            </span>
-                            <span class="hide-menu">Coa</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/barang" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-package"></i>
-                            </span>
-                            <span class="hide-menu">Barang</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/kategori" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-clipboard"></i>
-                            </span>
-                            <span class="hide-menu">Kategori</span>
-                        </a>
-                    </li>
-                    {{-- <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">AUTH</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-login"></i>
-                        </span>
-                        <span class="hide-menu">Login</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-user-plus"></i>
-                        </span>
-                        <span class="hide-menu">Register</span>
-                    </a>
-                </li>
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">EXTRA</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-mood-happy"></i>
-                        </span>
-                        <span class="hide-menu">Icons</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-aperture"></i>
-                        </span>
-                        <span class="hide-menu">Sample Page</span>
-                    </a>
-                </li> --}}
+                        </li>
+
+                        {{-- <li class="sidebar-item">
+                            <a class="sidebar-link" href="/zakat" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-money"></i>
+                                </span>
+                                <span class="hide-menu">Pembayaran Zakat</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/sedekah" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-money"></i>
+                                </span>
+                                <span class="hide-menu">Sedekah Dan Infaq</span>
+                            </a>
+                        </li> --}}
+
+                        <li class="sidebar-item">
+                            <a id="penyerahanZakat" class="sidebar-link {{ Request::is('penyerahan*') ? 'active' : '' }}" href="/penyerahan" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-money"></i>
+                                </span>
+                                <span class="hide-menu">Penyerahan Zakat</span>
+                            </a>
+                        </li>
+
+                        @can('admin')
+                        <li class="sidebar-item">
+                            <a id="penggajian" class="sidebar-link {{ Request::is('gaji*') ? 'active' : '' }}" href="/gaji" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-money"></i>
+                                </span>
+                                <span class="hide-menu">Penggajian</span>
+                            </a>
+                        </li>
+                        @endcan
+
+                        {{-- <li class="sidebar-item">
+                            <a class="sidebar-link" href="/fidyah" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-money"></i>
+                                </span>
+                                <span class="hide-menu">Fidyah</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/wakaf" aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-money"></i>
+                                </span>
+                                <span class="hide-menu">Wakaf</span>
+                            </a>
+                        </li> --}}
+                    @endcan
                 </ul>
-                <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
-                    <div class="d-flex">
-                        <div class="unlimited-access-title me-3">
-                            <h6 class="fw-semibold fs-4 mb-6 text-dark w-85"></h6>
-                            <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank"
-                                class="btn btn-primary fs-2 fw-semibold lh-sm"></a>
-                        </div>
-                        <div class="unlimited-access-img">
-                            <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
             </nav>
             <!-- End Sidebar navigation -->
         </div>

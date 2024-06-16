@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('muzakki', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_muzakki');
-            $table->string('nama_muzakki');
-            $table->integer('no_telp') ;
-            $table->string('jenis_kelamin');
-            $table->date('tanggal_lahir');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->string('no_telp', 13) ;
+            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
+            $table->string('qr_token');
+            $table->string('status');
             $table->timestamps();
         });
     }

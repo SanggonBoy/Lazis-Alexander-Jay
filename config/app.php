@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('https://whole-allowed-sparrow.ngrok-free.app', 'APP_URL'),
 
     'asset_url' => env('ASSET_URL', '/'),
 
@@ -194,6 +194,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        Mckenziearts\Notify\LaravelNotifyServiceProvider::class
 
     ],
 

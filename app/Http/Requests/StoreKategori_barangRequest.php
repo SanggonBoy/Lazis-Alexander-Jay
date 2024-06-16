@@ -11,7 +11,7 @@ class StoreKategori_barangRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**

@@ -18,8 +18,22 @@ class BarangController extends Controller
     public function index()
     {
         return view('barang/view', [
-            'barang' => Barang::with('kategori')->get()
+            'barang' => Barang::all(),
         ]);
+    }
+
+    public function qrcode()
+    {
+        return view('barang/qr', [
+            'user' => User::first(),
+        ]);
+    }
+
+    public function validasi(User $user, Request $request)
+    {
+        $decodedText = $request->all();
+        // Lakukan proses sesuai kebutuhan dengan data $decodedText
+        return response()->json(['message' => 'Data berhasil diproses']);
     }
 
     /**

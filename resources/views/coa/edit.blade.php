@@ -26,7 +26,7 @@
                 @csrf
                 @method('PUT')
                 <div class="mb-3"><label for="kode_akun">Kode Akun</label>
-                    <input class="form-control form-control-solid" id="kode_akun" name="kode_akun" type="number" placeholder="Kode Akun" value="{{$coa->kode_akun}}" maxlength="3" pattern="[0-9][1,3]">
+                    <input class="form-control form-control-solid" id="kode_akun" name="kode_akun" type="number" placeholder="Kode Akun" value="{{$coa->kode_akun}}" readonly>
                     <small class="text-danger">Kode Akun harus terdiri dari maksimum 3 digit angka</small>
                 </div>
 

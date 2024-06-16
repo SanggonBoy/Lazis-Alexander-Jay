@@ -27,6 +27,7 @@
                 <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
             </div> --}}
             <span>Gunakan email Anda untuk registrasi</span>
+
             <input type="text" placeholder="Name" name="name" class="@error('name') is-invalid @enderror"
                 value="{{ old('name') }}" required autofocus>
             @error('name')
@@ -34,6 +35,7 @@
                     {{ $message }}
                 </div>
             @enderror
+
             <input type="email" placeholder="Email" name="email" class="@error('email') is-invalid @enderror"
                 value="{{ old('email') }}" required>
             @error('email')
@@ -41,6 +43,7 @@
                     {{ $message }}
                 </div>
             @enderror
+
             <input type="password" placeholder="Password" name="password" class="@error('password') is-invalid @enderror"
                 required>
             @error('password')
@@ -48,7 +51,29 @@
                     {{ $message }}
                 </div>
             @enderror
-            <input type="hidden" name="status" value="karyawan">
+
+            <input type="number" placeholder="No. Telp" name="no_telp" class="@error('no_telp') is-invalid @enderror"
+                value="{{ old('no_telp') }}" required autofocus>
+            @error('no_telp')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+
+            <select name="jenis_kelamin" class="@error('jenis_kelamin') is-invalid @enderror">
+                <option value="" disabled selected aria-placeholder="Jenis Kelamin">Jenis Kelamin</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+            @error('jenis_kelamin')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+
+
+            <input type="hidden" name="qr_token" value="{{$qr_token}}">
+            <input type="hidden" name="status" value="muzakki">
             <button>Daftar</button>
         </form>
     </div>
@@ -62,6 +87,9 @@
                 <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                 <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
             </div> --}}
+            <span>Menggunakan QrCode</span>
+            <div class="social-icons"><a href="/QrLogin" class="icon"><i class="fa-solid fa-qrcode"></i></a></div>
+            <span>Atau</span>
             <span>Gunakan email dan kata sandi Anda.</span>
             <input type="email" placeholder="Email" name="email" value="{{ old('email') }}"
                 class="@error('email') is-invalid @enderror" autofocus required>

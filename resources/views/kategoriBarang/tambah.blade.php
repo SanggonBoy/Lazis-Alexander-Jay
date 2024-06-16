@@ -4,6 +4,8 @@
 @extends('layouts.dashboard.footer')
 
 @section('content')
+@can('karyawan')<h1 class="display-4">Anda tidak memiliki akses kesini!</h1>@endcan
+@can('admin')
     <h1>Tambah Data</h1>
     <form action="/kategori" method="post" class="mb-3">
         @csrf
@@ -18,4 +20,5 @@
         </div>
         <button class="btn btn-primary">Tambah</button>
     </form>
+    @endcan
 @endsection

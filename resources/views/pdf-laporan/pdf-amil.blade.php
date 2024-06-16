@@ -2,11 +2,6 @@
 
 @section('content')
     <h2 style="text-align: center;">Tabel Amil</h2>
-    <hr>
-
-    @can('admin')
-        {{-- <a class="badge text-bg-primary mb-5 mt-2 p-2" href="/barang/create">Tambah Barang</a> --}}
-    @endcan
 
     <table class="table" style="border-collapse: collapse; width: 100%;">
         <thead>
@@ -27,7 +22,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $m->kode_amil }}</td>
                     <td>{{ $m->nama_amil }}</td>
-                    <td>0{{ $m->no_telp }}</td>
+                    <td>{{ $m->no_telp }}</td>
                     <td>{{ $m->alamat }}</td>
                     <td>{{ $m->jenis_kelamin }}</td>
                 </tr>

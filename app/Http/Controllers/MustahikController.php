@@ -17,7 +17,7 @@ class MustahikController extends Controller
     public function index()
     {
         return view('mustahik/view', [
-            'mustahik' => Mustahik::all()
+            'mustahik' => Mustahik::all(),
         ]);
     }
 
@@ -34,14 +34,29 @@ class MustahikController extends Controller
      */
     public function store(Request $request)
     {
-
         $rules = $request->validate([
-            'kode_mustahik' => 'required|max:255|unique:mustahik',
             'nama_mustahik' => 'required|max:255',
-            'no_telp' => 'required|max:13',
+            'no_telp' => 'required|min:11|max:13',
             'alamat' => 'required|max:255',
-            'jenis_kelamin' => 'required'
+            'jenis_kelamin' => 'required',
         ]);
+
+        $name = $rules['nama_mustahik'];
+        $firstName = explode(' ', $name)[0];
+        $lastName = explode(' ', $name)[1] ?? $firstName;
+
+        $initial = strtoupper(substr($firstName, 0, 2));
+        $initial .= strtoupper(substr($lastName, 0, 1));
+
+        $initial = $initial . '-' . rand();
+
+        $rules = [
+            'kode_mustahik' => $initial,
+            'nama_mustahik' => $rules['nama_mustahik'],
+            'no_telp' => $rules['no_telp'],
+            'alamat' => $rules['alamat'],
+            'jenis_kelamin' => $rules['jenis_kelamin'],
+        ];
 
         // $kd = 'MTHK-' . $rules['id_mustahik'];
 
@@ -62,8 +77,6 @@ class MustahikController extends Controller
         Mustahik::create($rules);
 
         return redirect('/mustahik');
-
-        
     }
 
     /**
@@ -80,7 +93,7 @@ class MustahikController extends Controller
     public function edit(Mustahik $mustahik)
     {
         return view('/mustahik/edit', [
-            'a' => $mustahik
+            'a' => $mustahik,
         ]);
     }
 
@@ -94,16 +107,14 @@ class MustahikController extends Controller
             'nama_mustahik' => 'required|max:255',
             'no_telp' => 'required|max:13',
             'alamat' => 'required|max:255',
-            'jenis_kelamin' => 'required'
+            'jenis_kelamin' => 'required',
         ]);
 
-        if ($request->kode_mustahik != $mustahik->kode_mustahik )
-        {
+        if ($request->kode_mustahik != $mustahik->kode_mustahik) {
             $rules['kode_mustahik'] = 'unique';
         }
 
-        Mustahik::where('id', $mustahik->id)
-        ->update($rules);
+        Mustahik::where('id', $mustahik->id)->update($rules);
 
         return redirect('/mustahik');
         // return dd($rules);
@@ -112,9 +123,9 @@ class MustahikController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Mustahik $mustahik)
+    public function destroy($id)
     {
-        Mustahik::destroy($mustahik->id);
+        Mustahik::destroy($id);
         return redirect('/mustahik');
     }
 }

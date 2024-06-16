@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('kode_mustahik');
             $table->string('nama_mustahik');
-            $table->integer('no_telp');
+            $table->string('no_telp', 13);
             $table->string('alamat');
-            $table->string('jenis_kelamin');
+            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
             $table->timestamps();
         });
     }

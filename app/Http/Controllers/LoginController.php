@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Login;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreLoginRequest;
 use App\Http\Requests\UpdateLoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -16,7 +18,9 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('auth.combine');
+        return view('auth.combine', [
+            'qr_token' => Str::random(60)
+        ]);
     }
 
     /**
@@ -30,13 +34,25 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($validated)) {
+        if (Auth::attempt($validated) && (auth()->user()->status !== 'admin' && auth()->user()->status !== 'amil') ) {
             $request->session()->regenerate();
  
             return redirect()->intended('/godFrey');
         }
  
         return back()->with('loginError', 'Login Failed!');
+    }
+
+    public function qrlogin()
+    {
+        return view('auth/qr', [
+            'user' => User::first()
+        ]);
+    }
+
+    public function qrvalidasi(Request $request)
+    {
+        return response()->json(['message' => 'Data berhasil diproses']);
     }
     public function create()
     {

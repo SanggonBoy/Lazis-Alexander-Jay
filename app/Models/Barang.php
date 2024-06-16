@@ -14,10 +14,10 @@ class Barang extends Model
     protected $table = 'barang';
     protected $guarded = ['id_barang'];
 
-    protected $with = ['kategori'];
+    // protected $with = ['kategori'];
 
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori_barang::class, 'kode_kategori');
-    }
+    // public function kategori()
+    // {
+    //     return $this->belongsTo(Kategori_barang::class, 'kode_kategori');
+    // }
 }

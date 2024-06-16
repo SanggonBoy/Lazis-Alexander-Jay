@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/png"
         href="{{ asset('https://webicdn.com/sdirmember/26/25579/logotoko/xj97q.jpg') }}" />
     <link rel="stylesheet" href="{{ asset('dashboard/css/styles.min.css') }}" />
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
 </head>
 
 <body>

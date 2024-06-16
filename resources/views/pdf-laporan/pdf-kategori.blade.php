@@ -4,10 +4,6 @@
     <h2 style="text-align: center;">Tabel Kategori</h2>
     <hr>
 
-    @can('admin')
-        {{-- <a class="badge text-bg-primary mb-5 mt-2 p-2" href="/barang/create">Tambah Barang</a> --}}
-    @endcan
-
     <table class="table" style="border-collapse: collapse; width: 100%;">
         <thead>
             <tr>

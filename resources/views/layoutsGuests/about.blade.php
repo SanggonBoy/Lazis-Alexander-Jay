@@ -2,7 +2,7 @@
     <section class="page-section" id="about">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Tentang Kami</h2>
+                <h2 class="section-heading text-uppercase" id="tentang">Tentang Kami</h2>
                 <h3 class="section-subheading text-muted">Singkat sejarah seputar LAZIS.</h3>
             </div>
             <ul class="timeline">

@@ -15,7 +15,7 @@ class status
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!auth()->check() || auth()->user()->status !== 'admin') {
+        if (!auth()->check() || (auth()->user()->status == 'muzakki')) {
             abort(403);
         }
         return $next($request);

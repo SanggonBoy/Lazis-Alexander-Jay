@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Register;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreRegisterRequest;
 use App\Http\Requests\UpdateRegisterRequest;
+use App\Models\Muzakki;
 
 class RegisterController extends Controller
 {
@@ -29,13 +31,36 @@ class RegisterController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:7|max:255',
-            'status' => 'required'
+            'password' => 'required|min:6|max:255',
+            'status' => 'required',
+            'qr_token' => 'required',
+            'no_telp' => 'required|max:13',
+            'jenis_kelamin' => 'required'
         ]);
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        $data = [
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => $validatedData['password'],
+            'status' => $validatedData['status'],
+            'qr_token' => $validatedData['qr_token'],
+            'no_telp' => $validatedData['no_telp'],
+            'jenis_kelamin' => $validatedData['jenis_kelamin']
+        ];
 
-        User::create($validatedData);
+        Muzakki::create($data);
+
+        $dataUser = [
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => $validatedData['password'],
+            'status' => $validatedData['status'],
+            'qr_token' => $validatedData['qr_token']
+        ];
+
+        $dataUser['password'] = Hash::make($dataUser['password']);
+
+        User::create($dataUser);
 
         return redirect('/')->with('success', 'Register is Successfully');
     }
